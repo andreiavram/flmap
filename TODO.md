@@ -1,0 +1,4 @@
+- POST throttling for anon users
+- proper DB setup 
+- schimba marker gulguta
+- add image support (w resize)

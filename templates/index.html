@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Festivalul Luminii 2020 / Cercetașii României Alba Iulia</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <style>
+        #fl_map {
+        }
+
+        html, body, #fl_map {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #addButton {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px;
+            z-index: 400;
+            font-weight: bold;
+            background-color: #fdc75f;
+            border-radius: 5px;
+        }
+
+        .popup_img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="fl_map"></div>
+<button id="addButton"><table><tr><td><img src = "{% static "gulguta.png" %}" /></td><td>Contribuie cu gulguța ta!</td></tr></table></button>
+<script src="{% static 'flmap.js' %}"></script>
+</body>
+</html>
