@@ -30,7 +30,7 @@ var gulgutaIcon = L.icon({
 function display_on_map(data, map) {
     data.forEach(function (e) {
         var m = L.marker([e.geo_lat, e.geo_long], {icon: gulgutaIcon}).addTo(map);
-        m.bindPopup("Gulguța de la <strong>" + e.name + "</strong><br />" + "<img class='popup_img' src='" + e.photo + "' />");
+        m.bindPopup("Gulguța de la <strong>" + e.name + "</strong><br />" + "<img class='popup_img' src='" + e.photo + "' /> <br />" + e.message);
     })
 }
 
