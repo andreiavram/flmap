@@ -47,13 +47,12 @@
             <div class = "mb-3">
                 <label for="photo" class="form-label">O poză cu gulguța ta</label>
                 <input type="file" class="form-control" id="photo" aria-describedby="photoHelp">
+                <input type="hidden" id="file_base64">
                 <div id="photoHelp" class="form-text">O poză cu gulguța ta / construcția ta de gulguțe</div>
             </div>
             <div class = "mb-3">
                 <label for="mapPoint" class="form-label">Unde e gulguța asta?</label>
                 <div id = "formMap">
-
-                    map here
                 </div>
                 <input type="text" class = "form-control" id = "mapPoint" readonly>
                 <input type="hidden" id="geo_long">
@@ -64,7 +63,7 @@
                 <textarea class="form-control" id="message" rows="3"></textarea>
             </div>
             <div class = "mb-3">
-                <button class = "btn btn-primary" type="submit">Adaugă-mi gulguța pe hartă!</button>
+                <button id = "submitGulguta" class = "btn btn-primary" type="submit">Adaugă-mi gulguța pe hartă!</button>
             </div>
         </form>
     </div>

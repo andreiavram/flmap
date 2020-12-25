@@ -126,10 +126,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.AllowAny'
     ]
 }
 
@@ -140,6 +138,6 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / "media"
 
 try:
-    from .  local_settings import *
+    from .local_settings import *
 except ImportError:
     pass

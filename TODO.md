@@ -1,4 +1,6 @@
 - POST throttling for anon users
-- proper DB setup 
-- schimba marker gulguta
+- proper DB setup
 - add image support (w resize)
+- facebook sharing support
+- gulguta detail page
+- zoom to fit all / return

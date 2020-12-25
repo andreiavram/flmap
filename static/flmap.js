@@ -34,4 +34,4 @@ function display_on_map(data, map) {
     })
 }
 
-fetch("http://127.0.0.1:8000/api/gulgute/").then(response => response.json()).then(data => display_on_map(data, mymap));
+fetch("/api/gulgute/").then(response => response.json()).then(data => display_on_map(data, mymap));
