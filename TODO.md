@@ -1,6 +1,3 @@
 - POST throttling for anon users
 - proper DB setup
-- add image support (w resize)
-- facebook sharing support
 - gulguta detail page
-- zoom to fit all / return

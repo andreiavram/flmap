@@ -27,11 +27,30 @@ var gulgutaIcon = L.icon({
     popupAnchor: [0, -20]
 });
 
-function display_on_map(data, map) {
+function add_to_group(data, group) {
     data.forEach(function (e) {
-        var m = L.marker([e.geo_lat, e.geo_long], {icon: gulgutaIcon}).addTo(map);
+        var m = L.marker([e.geo_lat, e.geo_long], {icon: gulgutaIcon}).addTo(group);
         m.bindPopup("Gulguța de la <strong>" + e.name + "</strong><br />" + "<img class='popup_img' src='" + e.photo + "' /> <br />" + e.message);
     })
 }
 
-fetch("/api/gulgute/").then(response => response.json()).then(data => display_on_map(data, mymap));
+var pulledMarkers = L.featureGroup();
+pulledMarkers.addTo(mymap);
+
+let fitButtonStatus = 0; // alba iulia;
+
+let fitButton = document.getElementById("zoom");
+fitButton.addEventListener("click", function (e) {
+    if (fitButtonStatus === 0) {
+        fitButton.innerHTML = "Doar Alba Iulia"
+        fitButtonStatus = 1; // everything
+        mymap.fitBounds(pulledMarkers.getBounds());
+    } else if (fitButtonStatus === 1) {
+        fitButton.innerText = "Vezi toate"
+        fitButtonStatus = 0;
+        mymap.setView([46.06549996715349, 23.570670843267617], 14)
+    }
+})
+
+
+fetch("/api/gulgute/").then(response => response.json()).then(data => add_to_group(data, pulledMarkers));
