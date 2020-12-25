@@ -138,3 +138,8 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = BASE_DIR / "media"
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
