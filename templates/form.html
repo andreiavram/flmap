@@ -30,43 +30,48 @@
             height: 300px;
             margin-bottom: 1em;
         }
+
+        input[data-readonly] {
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
-    <div class = "container" id = "main-container">
-        <h1>Adaugă gulguța ta!</h1>
-        <p class="lead">
-            Participă la Festivalul nostru virtual al Luminii! Construiește o gulguță sau o construcție din gulguțe, fă-i o poză și pune-o pe harta noastră!
-        </p>
-        <form>
-            <div class = "mb-3">
-                <label for="name" class = "form-label">Numele tău</label>
-                <input type="text" class = "form-control form-control-lg" id="name" aria-describedby="nameHelp">
-                <div id="nameHelp" class="form-text">Numele tău va apărea pe hartă alături de gulguța ta</div>
+<div class="container" id="main-container">
+    <h1>Adaugă gulguța ta!</h1>
+    <p class="lead">
+        Participă la Festivalul nostru virtual al Luminii! Construiește o gulguță sau o construcție din gulguțe, fă-i o
+        poză și pune-o pe harta noastră!
+    </p>
+    <form id="gulgutaForm">
+        <div class="mb-3">
+            <label for="name" class="form-label">Numele tău</label>
+            <input type="text" class="form-control form-control-lg" id="name" aria-describedby="nameHelp" required>
+            <div id="nameHelp" class="form-text">Numele tău va apărea pe hartă alături de gulguța ta</div>
+        </div>
+        <div class="mb-3">
+            <label for="photo" class="form-label">O poză cu gulguța ta</label>
+            <input type="file" class="form-control" id="photo" aria-describedby="photoHelp" required>
+            <input type="hidden" id="file_base64">
+            <div id="photoHelp" class="form-text">O poză cu gulguța ta / construcția ta de gulguțe</div>
+        </div>
+        <div class="mb-3">
+            <label for="mapPoint" class="form-label">Unde e gulguța asta?</label>
+            <div id="formMap">
             </div>
-            <div class = "mb-3">
-                <label for="photo" class="form-label">O poză cu gulguța ta</label>
-                <input type="file" class="form-control" id="photo" aria-describedby="photoHelp">
-                <input type="hidden" id="file_base64">
-                <div id="photoHelp" class="form-text">O poză cu gulguța ta / construcția ta de gulguțe</div>
-            </div>
-            <div class = "mb-3">
-                <label for="mapPoint" class="form-label">Unde e gulguța asta?</label>
-                <div id = "formMap">
-                </div>
-                <input type="text" class = "form-control" id = "mapPoint" readonly>
-                <input type="hidden" id="geo_long">
-                <input type="hidden" id="geo_lat">
-            </div>
-            <div class = "mb-3">
-                <label for="message">Opțional, mesajul tău pentru cercetași</label>
-                <textarea class="form-control" id="message" rows="3"></textarea>
-            </div>
-            <div class = "mb-3">
-                <button id = "submitGulguta" class = "btn btn-primary" type="submit">Adaugă-mi gulguța pe hartă!</button>
-            </div>
-        </form>
-    </div>
-    <script src="{% static 'flmap_form.js' %}"></script>
+            <input type="text" class="form-control" id="mapPoint" data-readonly required>
+            <input type="hidden" id="geo_long">
+            <input type="hidden" id="geo_lat">
+        </div>
+        <div class="mb-3">
+            <label for="message">Opțional, mesajul tău pentru cercetași</label>
+            <textarea class="form-control" id="message" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <button id="submitGulguta" class="btn btn-primary" type="submit">Adaugă-mi gulguța pe hartă!</button>
+        </div>
+    </form>
+</div>
+<script src="{% static 'flmap_form.js' %}"></script>
 </body>
 </html>

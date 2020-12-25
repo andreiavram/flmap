@@ -99,11 +99,21 @@ function getCookie(cname) {
     return "";
 }
 
-let btn = document.getElementById("submitGulguta")
-btn.addEventListener("click", function (e) {
-    e.preventDefault();
-    let btn = document.getElementById(e.target.id);
+let form = document.getElementById("gulgutaForm")
+form.addEventListener("submit", function (e) {
+    // let btn = document.getElementById(e.target.id);
     // btn.setAttribute("disabled", true);
+    let form = document.getElementById("gulgutaForm");
+
+
+    if (!form.checkValidity()) {
+        // btn.setAttribute("disabled", false);
+        console.log("invalid form");
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    form.classList.add('was-validated')
 
     let data = {
         name: document.getElementById("name").value,
@@ -113,12 +123,15 @@ btn.addEventListener("click", function (e) {
         photo: document.getElementById("file_base64").value,
     }
 
+
+    // console.log(data);
+
     postData('/api/gulgute/', data, getCookie("csrftoken"))
         .then(data => {
             console.log(data); // JSON data parsed by `data.json()` call
+            window.location.href = "/";
         });
 
-
-    // window.location.href = "/";
-
+    e.preventDefault();
+    e.stopPropagation();
 })
