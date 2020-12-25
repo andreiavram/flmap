@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from gulguta.views import MapTemplateView, GulgutaViewSet
+from gulguta.views import MapTemplateView, GulgutaViewSet, FormTemplateView
 
 gulguta_router = DefaultRouter()
 gulguta_router.register(r"gulgute", GulgutaViewSet)
@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(gulguta_router.urls)),
+    path('addGulguta', FormTemplateView.as_view()),
     path('', MapTemplateView.as_view()),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

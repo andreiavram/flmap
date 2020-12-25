@@ -1,11 +1,4 @@
-let button = document.getElementById("addButton")
-
-button.addEventListener("click", function (e) {
-    console.log("I was clicked");
-    window.location.href = "/addGulguta";
-})
-
-let mymap = L.map('fl_map').setView([46.06549996715349, 23.570670843267617], 14);
+let mymap = L.map('formMap').setView([46.06549996715349, 23.570670843267617], 14);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -27,11 +20,16 @@ var gulgutaIcon = L.icon({
     popupAnchor: [0, -20]
 });
 
-function display_on_map(data, map) {
-    data.forEach(function (e) {
-        var m = L.marker([e.geo_long, e.geo_lat], {icon: gulgutaIcon}).addTo(map);
-        m.bindPopup("Gulguța de la <strong>" + e.name + "</strong><br />" + "<img class='popup_img' src='" + e.photo + "' />");
-    })
+let markerExists = false;
+
+function onMapClick(e) {
+    console.log(markerExists);
+    if (!markerExists) {
+        let marker = new L.Marker(e.latlng, {draggable:true, icon:gulgutaIcon});
+        marker.addTo(mymap);
+    }
+
+    markerExists = true;
 }
 
-fetch("http://127.0.0.1:8000/api/gulgute/").then(response => response.json()).then(data => display_on_map(data, mymap));
+mymap.on('click', onMapClick);

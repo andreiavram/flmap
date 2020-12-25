@@ -13,6 +13,10 @@ class MapTemplateView(TemplateView):
     template_name = "index.html"
 
 
+class FormTemplateView(TemplateView):
+    template_name = "form.html"
+
+
 class GulgutaViewSet(ModelViewSet):
     queryset = Gulguta.objects.all()
     serializer_class = GulgutaSerializer
