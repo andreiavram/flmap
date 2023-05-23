@@ -1,35 +1,42 @@
-#fl_map {
-}
-
 html, body, #fl_map {
     margin: 0;
     height: 100%;
     width: 100%;
 }
 
-#addButton {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 5px;
-    z-index: 400;
-    font-weight: bold;
-    background-color: #fdc75f;
-    border-radius: 5px;
-}
-
-#zoom {
-    position: absolute;
-    top: 80px;
-    right: 20px;
-    padding: 5px;
-    z-index: 400;
-    font-weight: bold;
-    background-color: #fdc75f;
-    border-radius: 5px;
-
+#fl_map {
+    height: 90%;
+    top: 10%;
 }
 
 .popup_img {
     height: 200px;
+}
+
+#fl-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    height: 10%;
+    z-index: 999;
+}
+
+#fl-logo img {
+    float: right;
+    margin: 0;
+    height: 100%;
+}
+
+#fl-logo #fl-heading {
+    float: right;
+    height: 100%;
+    vertical-align: middle;
+    display: flex;
+}
+
+#fl-logo #fl-heading h1 {
+    margin: auto;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }

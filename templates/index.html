@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Festivalul Luminii - un eveniment al Cercetașilor României</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -28,7 +29,13 @@
           content="https://festivalul-luminii.ro/static/fl_fb.png">
 </head>
 <body>
+<div id="fl-logo">
+    <img src="{% static 'logo_oncr.png' %}">
+    <img src="{% static 'fl_logo_padding.png' %}">
+
+</div>
 <div id="fl_map"></div>
+
 <script src="{% static 'flmap.js' %}"></script>
 </body>
 </html>
