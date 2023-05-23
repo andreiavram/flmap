@@ -9,13 +9,13 @@ let mobileCheck = function () {
 let mymap = L.map('fl_map').setView([46.06549996715349, 24.870670843267617], mobileCheck() ? 7 : 8);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    attribution: 'Powered by <a href="https://yetilabs.ro">yeti labs</a> | Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
     detectRetina: true,
-    accessToken: 'pk.eyJ1IjoieWV0aWJhbGF1cnUiLCJhIjoiY2tqMnl6cWZwNWJ0aDJycWo4ZG41YjNtciJ9.IkhU0PgtFeEYaslj78WO1A'
+    accessToken: 'pk.eyJ1IjoieWV0aWJhbGF1cnUiLCJhIjoiY2xpMGx0Y282MDhnNDNjbzR5anozdTJwZiJ9.lBnMoxGyuBpzawYNzta7CQ'
 }).addTo(mymap);
 
 var gulgutaIcon = L.icon({
