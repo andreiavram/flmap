@@ -10,7 +10,7 @@ html, body, #fl_map {
 }
 
 .popup_img {
-    height: 200px;
+    width: 100%;
 }
 
 #fl-logo {

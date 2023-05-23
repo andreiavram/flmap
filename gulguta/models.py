@@ -20,6 +20,9 @@ class EventCategory(models.Model):
     icon = models.ImageField(upload_to="icons")
     config = models.JSONField(default=dict, blank=True)
 
+    class Meta:
+        verbose_name_plural = "Event categories"
+
     def __str__(self):
         return self.name
 
