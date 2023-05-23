@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 
     'rest_framework',
-
+    'leaflet',
     'gulguta',
 ]
 
@@ -80,8 +82,12 @@ WSGI_APPLICATION = 'flmap.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'HOST': config("DB_HOST", default="127.0.0.1"),
+        'PORT': config("DB_PORT", default=5432, cast=int),
+        'NAME': config("DB_NAME", default="flmap"),
+        'USER': config("DB_USER"),
+        'PASSWORD': config("DB_PASSWORD"),
     }
 }
 
@@ -136,6 +142,11 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = BASE_DIR / "media"
+
+LEAFLET_CONFIG = {
+    "DEFAULT_ZOOM": 7,
+    "DEFAULT_CENTER": (46.06549996715349, 24.870670843267617),
+}
 
 try:
     from .local_settings import *

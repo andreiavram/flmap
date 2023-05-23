@@ -1,11 +1,4 @@
-let button = document.getElementById("addButton")
-
-button.addEventListener("click", function (e) {
-    console.log("I was clicked");
-    window.location.href = "/addGulguta";
-})
-
-let mymap = L.map('fl_map').setView([46.06549996715349, 23.570670843267617], 14);
+let mymap = L.map('fl_map').setView([46.06549996715349, 24.870670843267617], 8);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -18,7 +11,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 var gulgutaIcon = L.icon({
     iconUrl: 'static/fl_marker.png',
-    shadowUrl: 'static/fl_marker.png',
+    // shadowUrl: 'static/fl_marker.png',
 
     iconSize: [25, 41],
     shadowSize: [0, 0],
@@ -29,28 +22,34 @@ var gulgutaIcon = L.icon({
 
 function add_to_group(data, group) {
     data.forEach(function (e) {
-        var m = L.marker([e.geo_lat, e.geo_long], {icon: gulgutaIcon}).addTo(group);
-        m.bindPopup("Gulguța de la <strong>" + e.name + "</strong><br />" + "<img class='popup_img' src='" + e.photo + "' /> <br />" + e.message);
-    })
+        var m = L.marker([e.location.position[1], e.location.position[0]], {icon: gulgutaIcon}).addTo(group);
+        var d = new Date(e.start_time);
+        var popupContent = `<h1>${e.title}</h1><br>`;
+        popupContent += `${e.description}<br><br>`;
+        popupContent += `<strong>Locul: </strong>${e.location.name}<br>`;
+
+        if (new Date(e.start_time) < new Date()) {
+            m.setOpacity(.7);
+            popupContent += `<strong>A avut loc în </strong>${d.getDate().toString().padStart(2, '0')}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getFullYear()}`;
+        } else {
+            popupContent += `<strong>Începe pe </strong>${d.getDate().toString().padStart(2, '0')}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getFullYear()}`;
+            popupContent += `de la <strong>${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}</strong><br>`;
+        }
+
+        if (e.external_link) {
+            popupContent += `<br><br><a href = '${e.external_link}' target="_blank">Mai multe detalii</a>`
+        }
+
+        if (e.photo) {
+            popupContent += `<br><br><img class='popup_img' src='${e.photo}' /><br>`;
+        }
+        m.bindPopup(popupContent);
+    });
 }
 
 var pulledMarkers = L.featureGroup();
 pulledMarkers.addTo(mymap);
 
-let fitButtonStatus = 0; // alba iulia;
-
-let fitButton = document.getElementById("zoom");
-fitButton.addEventListener("click", function (e) {
-    if (fitButtonStatus === 0) {
-        fitButton.innerHTML = "Doar Alba Iulia"
-        fitButtonStatus = 1; // everything
-        mymap.fitBounds(pulledMarkers.getBounds());
-    } else if (fitButtonStatus === 1) {
-        fitButton.innerText = "Vezi toate"
-        fitButtonStatus = 0;
-        mymap.setView([46.06549996715349, 23.570670843267617], 14)
-    }
-})
 
 
-fetch("/api/gulgute/").then(response => response.json()).then(data => add_to_group(data, pulledMarkers));
+fetch("/api/events/").then(response => response.json()).then(data => add_to_group(data, pulledMarkers));

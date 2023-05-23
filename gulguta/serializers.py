@@ -1,7 +1,7 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from gulguta.models import Gulguta
-from rest_framework import serializers
+from gulguta.models import EventInstance, EventCategory
 
 
 class Base64ImageField(serializers.ImageField):
@@ -36,9 +36,30 @@ class Base64ImageField(serializers.ImageField):
         return extension
 
 
-class GulgutaSerializer(ModelSerializer):
-    class Meta:
-        model = Gulguta
-        fields = ['name', 'geo_long', 'geo_lat', 'photo', "message"]
 
-    photo = Base64ImageField(max_length=None, use_url=True)
+class EventCategorySerializer(ModelSerializer):
+    class Meta:
+        model = EventCategory
+        fields = [
+            "name", "icon", "config"
+        ]
+
+
+class EventInstanceSerializer(ModelSerializer):
+    class Meta:
+        model = EventInstance
+        fields = [
+            "title", "description", "location", "description", "start_time", "end_time", "external_link", "photo",
+            "category"
+        ]
+
+    location = serializers.SerializerMethodField()
+    category = EventCategorySerializer()
+
+    def get_location(self, obj):
+        return {
+            "position": [obj.location[0], obj.location[1]],
+            "name": obj.location_description
+        }
+
+

@@ -4,71 +4,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Festivalul (virtual) al Luminii - Cercetașii României Alba Iulia</title>
+    <title>Festivalul Luminii - un eveniment al Cercetașilor României</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
 
-    <style>
-        #fl_map {
-        }
+    <link rel="stylesheet" href="{% static 'main.css' %}" />
 
-        html, body, #fl_map {
-            margin: 0;
-            height: 100%;
-            width: 100%;
-        }
-
-        #addButton {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 5px;
-            z-index: 400;
-            font-weight: bold;
-            background-color: #fdc75f;
-            border-radius: 5px;
-        }
-
-        #zoom {
-            position: absolute;
-            top: 80px;
-            right: 20px;
-            padding: 5px;
-            z-index: 400;
-            font-weight: bold;
-            background-color: #fdc75f;
-            border-radius: 5px;
-
-        }
-
-        .popup_img {
-            width: 300px;
-        }
-    </style>
-
-    <meta name="title" content="Festivalul (virtual) al Luminii - Cercetașii României Alba Iulia">
-    <meta name="description" content="Dacă până acum ne strângeam cu toții în Cetate, la Obelisc, și în toată zona admiram cu toții gulguțele aprinse de către toți cercetașii, în acest an vă încurajăm să contribuim cu toții la a construi gulguțe, în fiecare casă.
-În acest an de Crăciun, vă invităm să ne bucurăm împreună de gulguțe, puse fie la geam, în balcon, în fața blocului, a casei sau prin construirea de suporturi și sisteme inventive care bucură ochiul liber.">
+    <meta name="title" content="Festivalul Luminii - Cercetașii României">
+    <meta name="description" content="Redescoperă frumusețea lucrurilor mărunte">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fl.albascout.ro/">
-    <meta property="og:title" content="Festivalul (virtual) al Luminii - Cercetașii României Alba Iulia">
-    <meta property="og:description" content="Dacă până acum ne strângeam cu toții în Cetate, la Obelisc, și în toată zona admiram cu toții gulguțele aprinse de către toți cercetașii, în acest an vă încurajăm să contribuim cu toții la a construi gulguțe, în fiecare casă.
-În acest an de Crăciun, vă invităm să ne bucurăm împreună de gulguțe, puse fie la geam, în balcon, în fața blocului, a casei sau prin construirea de suporturi și sisteme inventive care bucură ochiul liber.">
+    <meta property="og:url" content="https://festivalul-luminii.ro/">
+    <meta property="og:title" content="Festivalul Luminii - Cercetașii României">
+    <meta property="og:description" content="Redescoperă frumusețea lucrurilor mărunte">
     <meta property="og:image"
-          content="https://fl.albascout.ro/static/fl_fb.png">
+          content="https://festivalul-luminii.ro/static/fl_fb.png">
 </head>
 <body>
 <div id="fl_map"></div>
-<button id="addButton"><table><tr><td><img src = "{% static "gulguta.png" %}" /></td><td style="padding-left: 3px">Contribuie cu gulguța ta!</td></tr></table></button>
-<button id="zoom">Vezi toate</button>
 <script src="{% static 'flmap.js' %}"></script>
 </body>
 </html>
