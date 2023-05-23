@@ -19,14 +19,14 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 var gulgutaIcon = L.icon({
-    iconUrl: 'static/fl_marker.png',
+    iconUrl: 'static/gulguta.png',
     // shadowUrl: 'static/fl_marker.png',
 
-    iconSize: [25, 41],
-    shadowSize: [0, 0],
+    iconSize: [41, 49],
+    // shadowSize: [0, 0],
     iconAnchor: [12, 40],
-    shadowAnchor: [19, 60],
-    popupAnchor: [0, -20]
+    // shadowAnchor: [19, 60],
+    popupAnchor: [10, -25]
 });
 
 function add_to_group(data, group) {
