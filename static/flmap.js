@@ -33,7 +33,7 @@ function add_to_group(data, group) {
             popupContent += `<strong>A avut loc în </strong>${d.getDate().toString().padStart(2, '0')}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getFullYear()}`;
         } else {
             popupContent += `<strong>Începe pe </strong>${d.getDate().toString().padStart(2, '0')}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getFullYear()}`;
-            popupContent += `de la <strong>${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}</strong><br>`;
+            popupContent += ` de la <strong>${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}</strong><br>`;
         }
 
         if (e.external_link) {
