@@ -29,7 +29,7 @@ function add_to_group(data, group) {
         popupContent += `<strong>Locul: </strong>${e.location.name}<br>`;
 
         if (new Date(e.start_time) < new Date()) {
-            m.setOpacity(.7);
+            m.setOpacity(.5);
             popupContent += `<strong>A avut loc în </strong>${d.getDate().toString().padStart(2, '0')}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getFullYear()}`;
         } else {
             popupContent += `<strong>Începe pe </strong>${d.getDate().toString().padStart(2, '0')}.${(d.getMonth() + 1).toString().padStart(2, '0')}.${d.getFullYear()}`;
