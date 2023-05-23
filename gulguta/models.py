@@ -34,7 +34,7 @@ class EventInstance(models.Model):
     end_time = models.DateTimeField()
 
     external_link = models.URLField(null=True, blank=True)
-    photo = models.ImageField(upload_to="covers")
+    photo = models.ImageField(upload_to="covers", null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.SET_NULL)
