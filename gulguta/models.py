@@ -19,6 +19,7 @@ class EventCategory(models.Model):
     name = models.CharField(max_length=255)
     icon = models.ImageField(upload_to="icons")
     config = models.JSONField(default=dict, blank=True)
+    active = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "Event categories"
@@ -26,6 +27,17 @@ class EventCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if self.active:  # Ensure only one active EventCategory
+            qs = EventCategory.objects.filter(active=True)
+            if self.id:
+                qs = qs.exclude(id=self.id)
+            qs.update(active=False)
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def current(cls):
+        return cls.objects.get(active=True)
 
 class EventInstance(models.Model):
     title = models.CharField(max_length=255)
